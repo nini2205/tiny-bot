@@ -56,3 +56,7 @@ async def on_ready():
         else:
             await tree.sync()                   # global (may take up to ~1 hour)
             print(f"Globally synced as {client.user}")
+    except Exception as e:
+        print("Slash command sync failed:", e)
+
+client.run(TOKEN)
