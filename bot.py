@@ -27,5 +27,7 @@ async def ping_command(interaction: discord.Interaction):
 @app_commands.describe(text="What should I say?")
 async def say_command(interaction: discord.Interaction, text: str):
     await interaction.response.send_message(text)
+    
+print("TOKEN from env:", repr(TOKEN))
 
 client.run(TOKEN)
