@@ -28,4 +28,4 @@ async def ping_command(interaction: discord.Interaction):
 async def say_command(interaction: discord.Interaction, text: str):
     await interaction.response.send_message(text)
 
-client.run(TOKEN)
+client.run(DISCORD_TOKEN)
