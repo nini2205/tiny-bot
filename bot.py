@@ -1,12 +1,11 @@
-import os
-import discord
+import os, discord
 from discord import app_commands
-from dotenv import load_dotenv
 
-load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
+if not TOKEN:
+    raise RuntimeError("Missing DISCORD_TOKEN env var. Set it in Railway > Your Service > Variables.")
 
-intents = discord.Intents.default()  # keep it minimal
+intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
