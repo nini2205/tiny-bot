@@ -24,7 +24,11 @@ async def ping_command(interaction: discord.Interaction):
 @app_commands.describe(text="What should I say?")
 async def say_command(interaction: discord.Interaction, text: str):
     await interaction.response.send_message(text)
-    
-print("TOKEN from env:", repr(TOKEN))
 
+@tree.command(name="uwu", description="React with a uwu gif.")
+async def react_command(interaction: discord.Interaction):
+    gif_url = "https://i.pinimg.com/originals/65/28/7a/65287a19692bfeac7a7fce6ad296cef4.gif"  
+    await interaction.response.send_message(gif_url)
+
+    
 client.run(TOKEN)
