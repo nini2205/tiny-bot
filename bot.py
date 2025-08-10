@@ -1,5 +1,7 @@
 import os, random, discord
 from discord import app_commands
+from discord import Embed
+
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
