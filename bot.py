@@ -28,25 +28,21 @@ uwu_gifs = [
     "https://media1.tenor.com/m/HUO-YsiBS9MAAAAC/kjslave.gif",
 ]
 
-@tree.command(name="uwu", description="React with a random uwu gif.")
-async def uwu_command(interaction: discord.Interaction):
-    url = random.choice(uwu_gifs)
-    embed = Embed()
-    embed.set_image(url=url)
-    await interaction.response.send_message(embed=embed)
 
 @client.event
 async def on_ready():
-    try:
-        if GUILD_ID:
-            guild = discord.Object(id=int(GUILD_ID))
-            tree.copy_global_to(guild=guild)   # copy all globals to your guild
-            await tree.sync(guild=guild)       # instant in that server
-            print(f"Synced to guild {GUILD_ID} as {client.user}")
-        else:
-            await tree.sync()                   # global rollout (can take up to ~1 hour)
-            print(f"Globally synced as {client.user}")
-    except Exception as e:
-        print("Slash command sync failed:", e)
+    await tree.sync(guild=guild_obj) if guild_obj else await tree.sync()
+    print(f"Bot ready as {client.user}")
+
+@tree.command(name="checkperms", description="Check if bot can send embeds & show a random uwu gif", guild=guild_obj)
+async def checkperms(interaction: discord.Interaction):
+    perms = interaction.channel.permissions_for(interaction.guild.me)
+    if perms.embed_links:
+        gif_url = random.choice(uwu_gifs)
+        embed = Embed()
+        embed.set_image(url=gif_url)
+        await interaction.response.send_message(f"✅ I can send embeds! Here's a random uwu gif:", embed=embed)
+    else:
+        await interaction.response.send_message("❌ I don’t have permission to send embeds in this channel.", ephemeral=True)
 
 client.run(TOKEN)
