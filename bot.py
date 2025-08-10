@@ -41,10 +41,15 @@ uwu_gifs = [
     "https://media.tenor.com/1dX9o0mR5eMAAAAC/uwu-cat.gif",
     "https://media.tenor.com/7b4o1J8c5oQAAAAd/uwu-anime.gif",
     "https://media.tenor.com/q0s4bQzvYHcAAAAd/kitty-uwu.gif",
+    "https://media1.tenor.com/m/HUO-YsiBS9MAAAAC/kjslave.gif",
+    
 ]
 
 @tree.command(name="uwu", description="React with a random uwu gif.", guild=guild_obj)
 async def uwu_command(interaction: discord.Interaction):
-    await interaction.response.send_message(random.choice(uwu_gifs))
+    url = random.choice(uwu_gifs)
+    embed = Embed()
+    embed.set_image(url=url)
+    await interaction.response.send_message(embed=embed)
 
 client.run(TOKEN)
