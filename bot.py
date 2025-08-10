@@ -2,8 +2,6 @@ import os, discord
 from discord import app_commands
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-if not TOKEN:
-    raise RuntimeError("Missing DISCORD_TOKEN env var. Set it in Railway > Your Service > Variables.")
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
